@@ -94,7 +94,7 @@ public final class Color3 {
      * @return
      */
     public static Color3 HSVtoRGB(double hue, double saturation, double value) {
-        return new Color3(HSVtoRGBIntArray(hue, saturation, value));
+        return new Color3(HSVtoRGBIntArray(hue, saturation > 1 ? saturation/100 : saturation, value > 1 ? value/100 : value));
     }
 
     private static double[] HSVtoRGBIntArray(double hue, double saturation, double value) {
