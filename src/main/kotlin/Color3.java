@@ -1,4 +1,3 @@
-import kotlin.OptIn;
 import org.jetbrains.annotations.Nullable;
 import org.opencv.core.Scalar;
 
@@ -11,9 +10,14 @@ public final class Color3 {
         this.G = G;
         this.B = B;
     }
+    private Color3(double[] vals) {
+        this.R = vals[0];
+        this.G = vals[1];
+        this.B = vals[2];
+    }
     @Override
     public String toString() {
-        return "Color3(" + this.R + ", " + this.G + ", " + this.B + ')';
+        return "Color3(" + this.R + ", " + this.G + ", " + this.B + ")";
     }
 
     @Override
@@ -68,7 +72,7 @@ public final class Color3 {
      * @return A new Color3.
      */
     public static Color3 fromHSV(double h, double s, double v) {
-        return Color3.fromHSV(h, s, v);
+        return Color3.HSVtoRGB(h,s,v);
     }
 
     /**
@@ -89,7 +93,11 @@ public final class Color3 {
      * @param value
      * @return
      */
-    public int[] HSVtoRGB(double hue, double saturation, double value) {
+    public static Color3 HSVtoRGB(double hue, double saturation, double value) {
+        return new Color3(HSVtoRGBIntArray(hue, saturation, value));
+    }
+
+    private static double[] HSVtoRGBIntArray(double hue, double saturation, double value) {
         int r = 0;
         int g = 0;
         int b = 0;
@@ -137,7 +145,7 @@ public final class Color3 {
         }
 
         int ree = -16777216 | r << 16 | g << 8 | b << 0;
-        return new int[]{ree >> 16 & 255, ree >> 8 & 255, ree >> 0 & 255};
+        return new double[]{ree >> 16 & 255, ree >> 8 & 255, ree >> 0 & 255};
     }
     private static String rgbToString(double r, double g, double b) {
         String rs = Integer.toHexString((int)(r * 256));
