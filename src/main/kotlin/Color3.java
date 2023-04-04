@@ -1,16 +1,17 @@
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.opencv.core.Scalar;
 
 public final class Color3 {
-    private final double R;
-    private final double G;
-    private final double B;
+    public final double R;
+    public final double G;
+    public final double B;
     public Color3(double R, double G, double B) {
         this.R = R;
         this.G = G;
         this.B = B;
     }
-    private Color3(double[] vals) {
+    public Color3(double[] vals) {
         this.R = vals[0];
         this.G = vals[1];
         this.B = vals[2];
@@ -28,7 +29,7 @@ public final class Color3 {
             double[] otherVal = ((Scalar) other).val;
             return this.R == otherVal[0] && this.G == otherVal[1] && this.B == otherVal[2];
         } else if (other instanceof Color3 otherC) {
-            return this.R == otherC.getR() && this.G == otherC.getG() && this.B == otherC.getB();
+            return this.R == otherC.R && this.G == otherC.G && this.B == otherC.B;
         } else return false;
     }
 
@@ -39,18 +40,6 @@ public final class Color3 {
      */
     public Scalar toScalar(double A) {
         return new Scalar(this.R, this.G, this.B, A);
-    }
-
-    public double getR() {
-        return this.R;
-    }
-
-    public double getG() {
-        return this.G;
-    }
-
-    public double getB() {
-        return this.B;
     }
 
     /**
@@ -65,12 +54,13 @@ public final class Color3 {
     }
 
     /**
-     * Creates a new Color3 using HSV values instead of the default RGB values.
+     * Creates a new Color3 using HSV values instead of the default RGB values. Very unstable and inaccurate.
      * @param h Hue value
      * @param s Saturation value
      * @param v Vibrance value
      * @return A new Color3.
      */
+    @Deprecated(since="1.1")
     public static Color3 fromHSV(double h, double s, double v) {
         return Color3.HSVtoRGB(h,s,v);
     }
@@ -86,17 +76,17 @@ public final class Color3 {
     }
 
     /**
-     * Util function that converts HSV (also known as HSB) to RGB.
+     * Util function that converts HSV (also known as HSB) to RGB. Very unreliable and it is not recommended to use this.
      * @author https://stackoverflow.com/questions/7896280/
      * @param hue
      * @param saturation
      * @param value
      * @return
      */
+    @Deprecated(since="1.1")
     public static Color3 HSVtoRGB(double hue, double saturation, double value) {
         return new Color3(HSVtoRGBIntArray(hue, saturation > 1 ? saturation/100 : saturation, value > 1 ? value/100 : value));
     }
-
     private static double[] HSVtoRGBIntArray(double hue, double saturation, double value) {
         int r = 0;
         int g = 0;
@@ -106,8 +96,8 @@ public final class Color3 {
             g = b;
             r = b;
         } else {
-            double h = (hue - (double)Math.floor((double)hue)) * 6.0F;
-            double f = h - (double)Math.floor((double)h);
+            double h = (hue - Math.floor(hue)) * 6.0F;
+            double f = h - Math.floor(h);
             double p = value * (1.0F - saturation);
             double q = value * (1.0F - saturation * f);
             double t = value * (1.0F - saturation * (1.0F - f));
