@@ -9,5 +9,8 @@
         <module name="Color3" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Utils" target="19" />
+    </bytecodeTargetLevel>
   </component>
 </project>

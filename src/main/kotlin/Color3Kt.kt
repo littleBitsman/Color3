@@ -129,4 +129,4 @@ class Color3Kt(var R: Double = 0.0, var G: Double = 0.0, var B: Double = 0.0) {
  * Converts this Scalar to a Color3 with the equivalent R, G, and B values. The A value is discarded.
  * @return Equivalent Color3 with the R, G and B values.
  */
-inline fun Scalar.toColor3(): Color3Kt = Color3Kt.fromScalar(this)
+fun Scalar.toColor3(): Color3Kt = Color3Kt.fromScalar(this)
