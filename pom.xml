@@ -17,7 +17,8 @@
     <packaging>jar</packaging>
     <url>https://github.com/littleBitsman/Color3/</url>
 
-    <name>consoleApp</name>
+    <name>Color3</name>
+    <description>A better Scalar class for any FTC members using OpenCV.</description>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.code.style>official</kotlin.code.style>
@@ -32,6 +33,18 @@
             <url>https://repo1.maven.org/maven2/</url>
         </repository>
     </repositories>
+
+    <developers>
+        <developer>
+            <name>littleBitsman</name>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/littleBitsman/Color3.git</connection>
+        <developerConnection>scm:git:ssh://github.com/littleBitsman/Color3.git</developerConnection>
+        <url>http://github.com/littleBitsman/Color3/tree/master</url>
+    </scm>
 
     <build>
         <sourceDirectory>src/main/kotlin</sourceDirectory>
