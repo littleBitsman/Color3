@@ -1,4 +1,3 @@
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.opencv.core.Scalar;
 
@@ -41,6 +40,7 @@ public final class Color3 {
      * @param A The A value of the Scalar. Defaults to 0.
      * @return Equivalent Scalar with the R, G and B values with the set A value.
      */
+    @SuppressWarnings("unused")
     public Scalar toScalar(double A) {
         return new Scalar(this.R, this.G, this.B, A);
     }
@@ -52,6 +52,7 @@ public final class Color3 {
      * @param b Blue value
      * @return A new Color3.
      */
+    @SuppressWarnings("unused")
     public static Color3 fromRGB(double r, double g, double b) {
         return new Color3(r, g, b);
     }
@@ -73,6 +74,7 @@ public final class Color3 {
      * @param scalar The Scalar to be converted.
      * @return Color3 with equivalent R, G and B values of scalar.
      */
+    @SuppressWarnings("unused")
     public static Color3 fromScalar(Scalar scalar) {
         double[] val = scalar.val;
         return new Color3(val[0], val[1], val[2]);
@@ -80,11 +82,11 @@ public final class Color3 {
 
     /**
      * Util function that converts HSV (also known as HSB) to RGB. Very unreliable and it is not recommended to use this.
-     * @author https://stackoverflow.com/questions/7896280/
-     * @param hue
-     * @param saturation
-     * @param value
-     * @return
+     * @author <a href="https://stackoverflow.com/questions/7896280/">Stack Overflow question this came from.</a>
+     * @param hue Hue value.
+     * @param saturation Saturation value.
+     * @param value Brightness value (also known as "value")
+     * @return A Color3 with the corresponding RGB value of the passed in HSV/HSB value.
      */
     @Deprecated(since="1.1")
     public static Color3 HSVtoRGB(double hue, double saturation, double value) {
@@ -104,42 +106,44 @@ public final class Color3 {
             double p = value * (1.0F - saturation);
             double q = value * (1.0F - saturation * f);
             double t = value * (1.0F - saturation * (1.0F - f));
-            switch ((int)h) {
-                case 0:
-                    r = (int)(value * 255.0F + 0.5F);
-                    g = (int)(t * 255.0F + 0.5F);
-                    b = (int)(p * 255.0F + 0.5F);
-                    break;
-                case 1:
-                    r = (int)(q * 255.0F + 0.5F);
-                    g = (int)(value * 255.0F + 0.5F);
-                    b = (int)(p * 255.0F + 0.5F);
-                    break;
-                case 2:
-                    r = (int)(p * 255.0F + 0.5F);
-                    g = (int)(value * 255.0F + 0.5F);
-                    b = (int)(t * 255.0F + 0.5F);
-                    break;
-                case 3:
-                    r = (int)(p * 255.0F + 0.5F);
-                    g = (int)(q * 255.0F + 0.5F);
-                    b = (int)(value * 255.0F + 0.5F);
-                    break;
-                case 4:
-                    r = (int)(t * 255.0F + 0.5F);
-                    g = (int)(p * 255.0F + 0.5F);
-                    b = (int)(value * 255.0F + 0.5F);
-                    break;
-                case 5:
-                    r = (int)(value * 255.0F + 0.5F);
-                    g = (int)(p * 255.0F + 0.5F);
-                    b = (int)(q * 255.0F + 0.5F);
+            switch ((int) h) {
+                case 0 -> {
+                    r = (int) (value * 255.0F + 0.5F);
+                    g = (int) (t * 255.0F + 0.5F);
+                    b = (int) (p * 255.0F + 0.5F);
+                }
+                case 1 -> {
+                    r = (int) (q * 255.0F + 0.5F);
+                    g = (int) (value * 255.0F + 0.5F);
+                    b = (int) (p * 255.0F + 0.5F);
+                }
+                case 2 -> {
+                    r = (int) (p * 255.0F + 0.5F);
+                    g = (int) (value * 255.0F + 0.5F);
+                    b = (int) (t * 255.0F + 0.5F);
+                }
+                case 3 -> {
+                    r = (int) (p * 255.0F + 0.5F);
+                    g = (int) (q * 255.0F + 0.5F);
+                    b = (int) (value * 255.0F + 0.5F);
+                }
+                case 4 -> {
+                    r = (int) (t * 255.0F + 0.5F);
+                    g = (int) (p * 255.0F + 0.5F);
+                    b = (int) (value * 255.0F + 0.5F);
+                }
+                case 5 -> {
+                    r = (int) (value * 255.0F + 0.5F);
+                    g = (int) (p * 255.0F + 0.5F);
+                    b = (int) (q * 255.0F + 0.5F);
+                }
             }
         }
 
-        int ree = -16777216 | r << 16 | g << 8 | b << 0;
-        return new double[]{ree >> 16 & 255, ree >> 8 & 255, ree >> 0 & 255};
+        int ree = -16777216 | r << 16 | g << 8 | b;
+        return new double[]{ree >> 16 & 255, ree >> 8 & 255, ree & 255};
     }
+    @SuppressWarnings("unused")
     private static String rgbToString(double r, double g, double b) {
         String rs = Integer.toHexString((int)(r * 256));
         String gs = Integer.toHexString((int)(g * 256));
