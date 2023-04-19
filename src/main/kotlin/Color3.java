@@ -2,6 +2,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.opencv.core.Scalar;
 
+/**
+ * Better Scalar class that allows conversion between the two (this and Scalar) and stores three color values.
+ */
 public final class Color3 {
     public final double R;
     public final double G;
