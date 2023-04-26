@@ -1,5 +1,7 @@
+package com.github.littleBitsman.Color3;
+
 import org.jetbrains.annotations.Nullable;
-import org.opencv.core.Scalar;
+import com.github.littleBitsman.Color3.opencv_scalar_repackaged.Scalar;
 
 /**
  * Better Scalar class that allows conversion between the two (this and Scalar) and stores three color values.

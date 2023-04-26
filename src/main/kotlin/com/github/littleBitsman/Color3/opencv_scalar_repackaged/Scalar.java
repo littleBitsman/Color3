@@ -1,4 +1,4 @@
-package org.opencv.core;
+package com.github.littleBitsman.Color3.opencv_scalar_repackaged;
 
 //javadoc:Scalar_
 public class Scalar {

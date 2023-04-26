@@ -1,4 +1,4 @@
-import org.opencv.core.Scalar
+import com.github.littleBitsman.Color3.opencv_scalar_repackaged.Scalar
 
 internal fun HSVtoRGB(hue: Float, saturation: Float, v: Float): IntArray {
     var r = 0
