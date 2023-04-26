@@ -36,23 +36,29 @@ public final class Color3 {
     }
 
     /**
-     * Converts this Color3 to a Scalar with the equivalent R, G and B values with a set A value in the function. A defaults to 0.
-     * @param A The A value of the Scalar. Defaults to 0.
-     * @return Equivalent Scalar with the R, G and B values with the set A value.
+     * Converts this Color3 to a Scalar with the equivalent R, G and B values and an A value of 0.
+     * @return Equivalent Scalar with the R, G and B values and an A value of 0.
      */
-    @SuppressWarnings("unused")
+    public Scalar toScalar() {
+        return new Scalar(this.R, this.G, this.B);
+    }
+
+    /**
+     * Converts this Color3 to a Scalar with the equivalent R, G and B values and a set A value in the function. A defaults to 0.
+     * @param A The A value of the Scalar.
+     * @return Equivalent Scalar with the R, G and B values and the set A value.
+     */
     public Scalar toScalar(double A) {
         return new Scalar(this.R, this.G, this.B, A);
     }
 
     /**
-     * Equivalent to the initializer of Color3.
+     * Equivalent to the initializer of Color3. (Basically only exists for people who don't like using regular initializers lol)
      * @param r Red value
      * @param g Green value
      * @param b Blue value
      * @return A new Color3.
      */
-    @SuppressWarnings("unused")
     public static Color3 fromRGB(double r, double g, double b) {
         return new Color3(r, g, b);
     }
@@ -64,7 +70,7 @@ public final class Color3 {
      * @param v Vibrance value
      * @return A new Color3.
      */
-    @Deprecated(since="1.1")
+    @Deprecated(since="1.0")
     public static Color3 fromHSV(double h, double s, double v) {
         return Color3.HSVtoRGB(h,s,v);
     }
@@ -74,7 +80,6 @@ public final class Color3 {
      * @param scalar The Scalar to be converted.
      * @return Color3 with equivalent R, G and B values of scalar.
      */
-    @SuppressWarnings("unused")
     public static Color3 fromScalar(Scalar scalar) {
         double[] val = scalar.val;
         return new Color3(val[0], val[1], val[2]);
@@ -88,7 +93,7 @@ public final class Color3 {
      * @param value Brightness value (also known as "value")
      * @return A Color3 with the corresponding RGB value of the passed in HSV/HSB value.
      */
-    @Deprecated(since="1.1")
+    @Deprecated(since="1.0")
     public static Color3 HSVtoRGB(double hue, double saturation, double value) {
         return new Color3(HSVtoRGBIntArray(hue, saturation > 1 ? saturation/100 : saturation, value > 1 ? value/100 : value));
     }
@@ -143,7 +148,6 @@ public final class Color3 {
         int ree = -16777216 | r << 16 | g << 8 | b;
         return new double[]{ree >> 16 & 255, ree >> 8 & 255, ree & 255};
     }
-    @SuppressWarnings("unused")
     private static String rgbToString(double r, double g, double b) {
         String rs = Integer.toHexString((int)(r * 256));
         String gs = Integer.toHexString((int)(g * 256));
