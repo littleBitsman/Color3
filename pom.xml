@@ -32,10 +32,6 @@
             <id>mavenCentral</id>
             <url>https://repo1.maven.org/maven2/</url>
         </repository>
-        <repository>
-            <id>maven</id>
-            <url>C:\Users\CHEESEBURGER\.m2\repository\org\openftc\easyopencv\1.6.2</url>
-        </repository>
     </repositories>
 
     <developers>
