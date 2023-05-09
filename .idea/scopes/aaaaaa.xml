@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="aaaaaa" pattern="(gitignore||src:com.github.littleBitsman.Color3.*)&amp;&amp;!src:com.github.littleBitsman.Color3.Examples||src:com.github.littleBitsman.Color3.Color3" />
+</component>
