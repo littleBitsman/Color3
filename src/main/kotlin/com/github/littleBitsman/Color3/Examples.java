@@ -1,4 +1,5 @@
-import com.github.littleBitsman.Color3.Color3;
+package com.github.littleBitsman.Color3;
+
 import com.github.littleBitsman.Color3.opencv_scalar_repackaged.Scalar;
 
 public class Examples {
